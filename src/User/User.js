@@ -25,7 +25,7 @@ import './User.css';
 const user = (props) => {
     return (
         <div className="User">
-            <p onClick={props.updateNameClick}>Username is {props.name} and Gender {props.gender}</p>
+            <p onClick={props.clickToAction}>Username is {props.name} and Gender {props.gender}</p>
             <p>{props.children}</p>
             <input type="text" onChange={props.changeGender} />
         </div>
