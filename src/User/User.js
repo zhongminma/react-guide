@@ -10,9 +10,13 @@ export default user;
 
  * 2. Data binding use { } and use 'props' params to dynamic show properties
  * Class based use "this.props" whereas functional based use "props" keyword.
+ * between component tag use props.children to visit 
  
-
- *  
+ * 3. pass property between components
+ * user component add a eventHandler can trigger 'props change'
+ * on Parent componnet - App.js, we add this child eventHander as a new prop
+ * 
+ *   
 */
 
 import React from 'react';
@@ -20,8 +24,8 @@ import React from 'react';
 const user = (props) => {
     return (
         <div>
-            <p>Username is {props.name} and Gender {props.gender}</p>
-            <p>Email is: {props.children}</p>
+            <p onClick={props.updateNameClick}>Username is {props.name} and Gender {props.gender}</p>
+            <p>{props.children}</p>
         </div>
     )
 }
