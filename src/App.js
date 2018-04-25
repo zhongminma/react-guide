@@ -10,10 +10,10 @@ class App extends Component {
     ]
   }
 
-  checkFullNamehandler = () => {
+  checkFullNamehandler = (newName) => {
     //console.log('button clicked');
     this.setState({users:[
-      { name: 'Daniel K', gender: 'male'},
+      { name: newName, gender: 'male'},
       { name: 'Rachel M', gender: 'female'},
       { name: 'Bill J', gender: 'male'},
     ]});
@@ -29,10 +29,10 @@ class App extends Component {
         <User 
           name={this.state.users[1].name} 
           gender={this.state.users[1].gender}
-          updateNameClick={this.checkFullNamehandler}>
+          updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
             Email: rachel@gmail.com
         </User>
-        <button onClick={this.checkFullNamehandler}>
+        <button onClick={this.checkFullNamehandler.bind(this,'EzPassss')}>
           Check Full Name
         </button>
       </div>
