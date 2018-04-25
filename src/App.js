@@ -19,6 +19,16 @@ class App extends Component {
     ]});
   }
 
+  changeGenderHandler = (event) => {
+    this.setState(
+      {users:[
+        { name: 'Kevin', gender: 'male' },
+        { name: 'Rachel', gender: event.target.value },
+        { name: 'Bill', gender: 'male' },
+      ]}
+    );
+  }
+
   render() {
 
     const changeStyle = {
@@ -35,11 +45,12 @@ class App extends Component {
         <User 
           name={this.state.users[1].name} 
           gender={this.state.users[1].gender}
+          changeGender = {this.changeGenderHandler}
           updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
             Email: rachel@gmail.com
         </User>
         <button style={changeStyle}
-          onClick={ () => this.checkFullNamehandler('EzPassss')}>
+          onClick={this.checkFullNamehandler.bind(this,'EzPassss')}>
             Check Full Name
         </button>
       </div>

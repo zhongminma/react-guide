@@ -27,6 +27,7 @@ const user = (props) => {
         <div className="User">
             <p onClick={props.updateNameClick}>Username is {props.name} and Gender {props.gender}</p>
             <p>{props.children}</p>
+            <input type="text" onChange={props.changeGender} />
         </div>
     )
 }
