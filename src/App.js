@@ -20,6 +20,12 @@ class App extends Component {
   }
 
   render() {
+
+    const changeStyle = {
+      color: 'blue',
+      padding: '5px',
+    };
+
     return (
       <div className="App">
         <h1>React JSX</h1>  
@@ -32,8 +38,9 @@ class App extends Component {
           updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
             Email: rachel@gmail.com
         </User>
-        <button onClick={ () => this.checkFullNamehandler('EzPassss')}>
-          Check Full Name
+        <button style={changeStyle}
+          onClick={ () => this.checkFullNamehandler('EzPassss')}>
+            Check Full Name
         </button>
       </div>
     );

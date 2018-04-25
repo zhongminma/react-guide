@@ -20,10 +20,11 @@ export default user;
 */
 
 import React from 'react';
+import './User.css';
 
 const user = (props) => {
     return (
-        <div>
+        <div className="User">
             <p onClick={props.updateNameClick}>Username is {props.name} and Gender {props.gender}</p>
             <p>{props.children}</p>
         </div>
