@@ -32,7 +32,7 @@ class App extends Component {
           updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
             Email: rachel@gmail.com
         </User>
-        <button onClick={this.checkFullNamehandler.bind(this,'EzPassss')}>
+        <button onClick={ () => this.checkFullNamehandler('EzPassss')}>
           Check Full Name
         </button>
       </div>
