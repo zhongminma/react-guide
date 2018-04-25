@@ -21,14 +21,24 @@ class App extends Component {
   //   ]});
   // }
 
-  changeGenderHandler = (event) => {
-    this.setState(
-      {users:[
-        { name: 'Kevin', gender: 'male' },
-        { name: 'Rachel', gender: event.target.value },
-        { name: 'Bill', gender: 'male' },
-      ]}
-    );
+  changeGenderHandler = (event, id) => {
+    const findUserIndex = this.state.users.findIndex(u => {
+      return u.id === id;
+    });
+    // this is not recommend since belows mutate the state directly
+    /* const findUser = this.state.users[findUserIndex]; */
+    // ... to operate JS object as it's reference value and then assign.
+
+    const findCurrentUser = {
+      ...this.state.users[findUserIndex]
+    };
+    //const findCurrentUser = Object.assign({}, this.state.users[findUserIndex]);
+    findCurrentUser.gender = event.target.value;
+    // findCurrentUser.name = event.target.value;
+    const users = [...this.state.users];
+    users[findUserIndex] = findCurrentUser;
+    // set updated user with following updated users object
+    this.setState( {users: users});
   }
 
   deleteUserHandler = (userIndex) => {
@@ -54,6 +64,7 @@ class App extends Component {
               name = {u.name}
               gender = {u.gender}
               key = {u.id}
+              changeGender ={ (event) => this.changeGenderHandler(event, u.id)}
             />}
           )}
         </div>
