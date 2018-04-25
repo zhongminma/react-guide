@@ -7,7 +7,8 @@ class App extends Component {
     users: [
       { name: 'Dan', gender: 'male'},
       { name: 'Rachel', gender: 'female'}
-    ]
+    ],
+    showUsers: false,
   }
 
   checkFullNamehandler = (newName) => {
@@ -29,6 +30,11 @@ class App extends Component {
     );
   }
 
+  toggleUsersHandler = () => {
+    const ableShow = this.state.showUsers;
+    this.setState({showUsers: !ableShow})
+  }
+
   render() {
 
     const changeStyle = {
@@ -38,20 +44,25 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>React JSX</h1>  
-        <User 
-          name={this.state.users[0].name} 
-          gender={this.state.users[0].gender}/>
-        <User 
-          name={this.state.users[1].name} 
-          gender={this.state.users[1].gender}
-          changeGender = {this.changeGenderHandler}
-          updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
-            Email: rachel@gmail.com
-        </User>
+        <h1>React JSX</h1> 
+        { 
+          this.state.showUsers === true ?
+            <div> 
+              <User 
+                name={this.state.users[0].name} 
+                gender={this.state.users[0].gender}/>
+              <User 
+                name={this.state.users[1].name} 
+                gender={this.state.users[1].gender}
+                changeGender = {this.changeGenderHandler}
+                updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
+                  Email: rachel@gmail.com
+              </User>
+            </div> : null
+          }
         <button style={changeStyle}
-          onClick={this.checkFullNamehandler.bind(this,'EzPassss')}>
-            Check Full Name
+          onClick={this.toggleUsersHandler}>
+            Toggle to show/hide user
         </button>
       </div>
     );
