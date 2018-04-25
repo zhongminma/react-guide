@@ -36,6 +36,23 @@ class App extends Component {
   }
 
   render() {
+    let ableShowUsers = null;
+    if(this.state.showUsers){
+      ableShowUsers = (
+        <div> 
+          <User 
+            name={this.state.users[0].name} 
+            gender={this.state.users[0].gender}/>
+          <User 
+            name={this.state.users[1].name} 
+            gender={this.state.users[1].gender}
+            changeGender = {this.changeGenderHandler}
+            updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
+              Email: rachel@gmail.com
+          </User>
+        </div> 
+      );     
+    }
 
     const changeStyle = {
       color: 'blue',
@@ -45,21 +62,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React JSX</h1> 
-        { 
-          this.state.showUsers === true ?
-            <div> 
-              <User 
-                name={this.state.users[0].name} 
-                gender={this.state.users[0].gender}/>
-              <User 
-                name={this.state.users[1].name} 
-                gender={this.state.users[1].gender}
-                changeGender = {this.changeGenderHandler}
-                updateNameClick={this.checkFullNamehandler.bind(this,'HHHHHH')}>
-                  Email: rachel@gmail.com
-              </User>
-            </div> : null
-          }
+        {ableShowUsers}
         <button style={changeStyle}
           onClick={this.toggleUsersHandler}>
             Toggle to show/hide user
