@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+.user-h1-color {
+  color: red;
+}
+
+.user-h1-font {
+  font-weight: bold;
+  font-size: 24px;
+}

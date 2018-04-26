@@ -34,7 +34,7 @@ class App extends Component {
     };
     //const findCurrentUser = Object.assign({}, this.state.users[findUserIndex]);
     findCurrentUser.gender = event.target.value;
-    // findCurrentUser.name = event.target.value;
+    // findCurrentUser.gender = event.target.value;
     const users = [...this.state.users];
     users[findUserIndex] = findCurrentUser;
     // set updated user with following updated users object
@@ -54,10 +54,21 @@ class App extends Component {
   }
 
   render() {
+    // should move all const/let in the top, like 'style'
+    // Else you might got 'undefined' error 
+    const changeStyle = {
+      color: 'blue',
+      padding: '5px',
+      backgroundColor: 'white',
+    };
+
+    let h1Class = ['user-h1-color', 'user-h1-font'].join(' ');
     let ableShowUsers = null;
+
     if(this.state.showUsers) {
       ableShowUsers = (
         <div>
+        <p className={h1Class}>Personal Information</p>
           {this.state.users.map((u, index) => {
             return <User 
               clickToAction = {() => this.deleteUserHandler(index)}
@@ -69,6 +80,7 @@ class App extends Component {
           )}
         </div>
       );
+      changeStyle.backgroundColor = 'green';
 
       // ableShowUsers = (
       //   <div> 
@@ -86,16 +98,20 @@ class App extends Component {
       // );     
     }
 
-    const changeStyle = {
-      color: 'blue',
-      padding: '5px',
-    };
+    // change <h1> styling based on user.list.length
+    const dynamicClass = [];
+    if(this.state.users.length>=2) {
+      dynamicClass.push('user-h1-color');
+    } else if(this.state.users.length<2) {
+      dynamicClass.push('user-h1-font');
+    }
 
     return (
       <div className="App">
-        <h1>React JSX</h1> 
+        <h1 className={dynamicClass.join(' ')}>React JSX</h1> 
         {ableShowUsers}
-        <button style={changeStyle}
+        <button 
+          style={changeStyle}
           onClick={this.toggleUsersHandler}>
             Toggle to show/hide user
         </button>
