@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
+import classes from './App.css';
 import User from './User/User';
 
 class App extends Component {
   state = {
     users: [
-      { id: 'a001', name: 'Dan', gender: 'male'},
-      { id: 'a002', name: 'Rachel', gender: 'female'},
-      { id: 'a003', name: 'Bill', gender: 'male'},
+      { id: 'a001', name: 'Dan', gender: 'male' },
+      { id: 'a002', name: 'Rachel', gender: 'female' },
+      { id: 'a003', name: 'Bill', gender: 'male' },
     ],
-    showUsers: false,
+    showUsers: false
   }
 
   // checkFullNamehandler = (newName) => {
@@ -38,19 +39,19 @@ class App extends Component {
     const users = [...this.state.users];
     users[findUserIndex] = findCurrentUser;
     // set updated user with following updated users object
-    this.setState( {users: users});
+    this.setState({ users: users });
   }
 
   deleteUserHandler = (userIndex) => {
     //const users = this.state.users.slice();
     const users = [...this.state.users];
     users.splice(userIndex, 1);
-    this.setState({users: users});
+    this.setState({ users: users });
   }
 
   toggleUsersHandler = () => {
     const ableShow = this.state.showUsers;
-    this.setState({showUsers: !ableShow})
+    this.setState({ showUsers: !ableShow })
   }
 
   render() {
@@ -65,18 +66,19 @@ class App extends Component {
     let h1Class = ['user-h1-color', 'user-h1-font'].join(' ');
     let ableShowUsers = null;
 
-    if(this.state.showUsers) {
+    if (this.state.showUsers) {
       ableShowUsers = (
         <div>
-        <p className={h1Class}>Personal Information</p>
+          <p className={h1Class}>Personal Information</p>
           {this.state.users.map((u, index) => {
-            return <User 
-              clickToAction = {() => this.deleteUserHandler(index)}
-              name = {u.name}
-              gender = {u.gender}
-              key = {u.id}
-              changeGender ={ (event) => this.changeGenderHandler(event, u.id)}
-            />}
+            return <User
+              clickToAction={() => this.deleteUserHandler(index)}
+              name={u.name}
+              gender={u.gender}
+              key={u.id}
+              changeGender={(event) => this.changeGenderHandler(event, u.id)}
+            />
+          }
           )}
         </div>
       );
@@ -100,20 +102,20 @@ class App extends Component {
 
     // change <h1> styling based on user.list.length
     const dynamicClass = [];
-    if(this.state.users.length>=2) {
-      dynamicClass.push('user-h1-color');
-    } else if(this.state.users.length<2) {
-      dynamicClass.push('user-h1-font');
+    if (this.state.users.length >= 2) {
+      dynamicClass.push( classes.userH1Color );
+    } else if (this.state.users.length < 2) {
+      dynamicClass.push( classes.userH1Font );
     }
 
     return (
-      <div className="App">
-        <h1 className={dynamicClass.join(' ')}>React JSX</h1> 
+      <div className={classes.App}>
+        <h1 className={dynamicClass.join(' ')}>React JSX</h1>
         {ableShowUsers}
-        <button 
+        <button
           style={changeStyle}
           onClick={this.toggleUsersHandler}>
-            Toggle to show/hide user
+          Toggle to show/hide user
         </button>
       </div>
     );
